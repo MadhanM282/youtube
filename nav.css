@@ -1,0 +1,147 @@
+body {
+    background-color: rgb(26, 25, 25);
+    width: 1338px;
+    margin-top: 0px;
+    /* border: 1px solid red; */
+}
+#value {
+    width: 90%;
+    background-color: rgb(24, 23, 23);
+    border: 0.3px solid rgb(63, 62, 62);
+    /* border-bottom: x solid black; */
+    padding: 5px;
+    font-size: 20px;
+    /* border-radius: 10px; */
+    color: white;
+    margin-top: 0px;
+    cursor: text;
+
+    /* margin: auto; */
+
+}
+img{
+    cursor: pointer;
+}
+button {
+    font-size: 15px;
+    padding: 3px;
+    background: rgb(65, 64, 64);
+    width: 70px;
+    /* border-radius: 10px; */
+    /* background: turquoise; */
+    border: 0px;
+    cursor: pointer;
+}
+
+#value:focus {
+    outline: none;
+}
+
+.top {
+    width: 100%;
+    height: 50px;
+    /* border: 1px solid; */
+    display: flex;
+    background: rgb(36, 35, 35);
+
+}
+
+.top>img {
+    width: 80px;
+    /* border: 1px solid red; */
+}
+
+.searchh {
+    display: flex;
+    width: 51%;
+    height: 40px;
+    margin: auto;
+    margin-left: 83px;
+    /* border: 1px solid red; */
+}
+#img{
+    width: 20px;
+    height: 20px;
+    margin-top: 15px;
+    margin-left: 10px;
+    color: white;
+}
+.mic{
+    background: rgb(24, 23, 23);
+    padding: 5px 7px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+.top>h2{
+    font-family: Roboto, Arial, sans-serif;
+    /* height: 60px; */
+    /* border: 1px solid red; */
+    height: fit-content;
+    margin:auto;
+    margin-left: -20px;
+    color: white;
+}
+#profile{
+    width: 30px;
+    border-radius: 50%;
+}
+.right{
+    margin: auto;
+    /* border: 1px solid red; */
+    margin-top: 3px;
+}
+.right>img{
+    margin-left: 20px;
+    /* border: 1px solid blue ; */
+}
+.body{
+    display: flex;
+}
+.menu{
+    /* border: 1px solid red; */
+    width:230px;
+    height: 600px;
+    /* margin-top: 20px; */
+    background: rgb(36, 35, 35);
+}
+.homediv{
+    /* border: 1px solid red; */
+    color: white;
+    display: flex;
+    height: 40px;
+    /* background: rgb(36, 35, 35); */
+    padding-top: 10px;
+    
+}
+.homediv:hover{
+    background: rgb(63, 62, 62);
+    cursor: pointer;
+}
+.homediv>img{
+    /* border: 1px solid; */
+    /* height: 40px; */
+    margin: auto;
+    margin-left: 15px;
+}
+.homediv>.txt{
+    
+    /* border: 1px solid red; */
+    font-family: Roboto, Arial, sans-serif;
+    height: 40px;
+    margin: auto;
+    width: 100%;
+    margin-left: 30px;
+
+
+}
+.txt>h3{
+    margin: auto;
+    margin-top: 10px;
+    text-align: left;
+    font-weight: lighter;
+}
+.line{
+    border-bottom: 0.5px solid rgb(83, 82, 82);
+    margin-top: 10px;
+    margin-bottom: 15px;
+}

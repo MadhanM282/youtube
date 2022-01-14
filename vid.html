@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="video.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div class="top">
+        <img id="img" src="https://img.icons8.com/fluency-systems-regular/50/ffffff/menu.png" />
+        <img src="https://www.freepnglogos.com/uploads/youtube-logo-hd-8.png" alt="">
+        <h2>YouTube</h2>
+        <div class="searchh">
+            <input type="text " id="value" placeholder="Search">
+            <button onclick="search()"><img
+                    src="https://img.icons8.com/fluency-systems-regular/25/ffffff/search--v1.png" /></button>
+            <div class="mic">
+                <img src="https://img.icons8.com/material/28/ffffff/microphone--v1.png" />
+            </div>
+        </div>
+        <div class="right">
+            <img src="https://img.icons8.com/windows/24/ffffff/video-call--v1.png" />
+            <img src="https://img.icons8.com/ios/24/ffffff/squared-menu.png" />
+            <img src="https://img.icons8.com/material-rounded/24/ffffff/alarm.png" />
+            <img id="profile"
+                src="https://yt3.ggpht.com/yti/APfAmoFTTcFKqIsT0hC0kjToI4f9Cg4eDQ9a5MZCoO53fP4=s88-c-k-c0x00ffffff-no-rj-mo"
+                alt="">
+        </div>
+    </div>
+    <div id="main">
+        <div id="video">
+
+        </div>
+        <div id="recomend"></div>
+    </div>
+</body>
+
+</html>
+<script>
+
+    let { id } = JSON.parse(localStorage.getItem("id"))
+
+
+
+    let video = document.getElementById("video");
+    video.innerHTML = `<iframe width="900" height="500" src="https://www.youtube.com/embed/${id}" title="YouTube video player"
+                frameborder="0" allow="accelerometer; autoplay = "autoplay"; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>`
+
+    // let iframe = document.createElement("iframe")
+
+    // iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`
+    // iframe.height = "100%";
+    // iframe.width = "100%";
+    // iframe.setAttribute("allowfullscreen", "true")
+    // iframe.setAttribute("autoplay")
+
+    // video.append(iframe)
+
+
+    async function pop() {
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=20&key=AIzaSyA5WWRodrTI04OnMd5VsmpJL8MbnazQGzI`)
+
+        let data = await res.json()
+        // console.log(data.items)
+        pops(data.items)
+
+    }
+    pop()
+
+    function pops(data) {
+        data.map((ele) => {
+
+            let { snippet, id: { videoId } } = ele;
+
+            console.log('snippet', snippet);
+
+            let div = document.createElement("div");
+
+
+            let title = document.createElement("p");
+
+            title.textContent = snippet.title;
+
+
+            let thumb = document.createElement("img");
+            thumb.src = snippet.thumbnails.high.url;
+
+            div.append(thumb, title);
+
+            document.querySelector("#recomend").append(div)
+
+
+        })
+    }
+
+</script>

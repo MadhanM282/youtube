@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="nav.css">
+    <title>Document</title>
+    <style>
+     
+
+        #result {
+
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            margin-top: 20px;
+            width: 1100px;
+        
+        }
+
+        #result>div {
+        
+            color: white;
+            width: 250px;
+            height: fit-content;
+            margin-bottom: 30px;
+            cursor: pointer;
+            margin-left: 20px;
+        
+        }
+
+        #result>div>img {
+        
+            margin-top: 0px;
+            width: 250px;
+        
+        }
+        
+        #result>div>p{
+        
+            overflow:hidden;
+            height: 17px;
+            line-height: 20px;
+            width: 250px;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+        
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="top">
+        <img id="img" src="https://img.icons8.com/fluency-systems-regular/50/ffffff/menu.png" />
+        <img src="https://www.freepnglogos.com/uploads/youtube-logo-hd-8.png" alt="">
+        <h2>YouTube</h2>
+        <div class="searchh">
+            <input type="text " id="value" placeholder="Search">
+            <button onclick="search()"><img src="https://img.icons8.com/fluency-systems-regular/25/ffffff/search--v1.png" /></button>
+            <div class="mic">
+                <img src="https://img.icons8.com/material/28/ffffff/microphone--v1.png" />
+            </div>
+        </div>
+        <div class="right">
+            <img src="https://img.icons8.com/windows/24/ffffff/video-call--v1.png" />
+            <img src="https://img.icons8.com/ios/24/ffffff/squared-menu.png" />
+            <img src="https://img.icons8.com/material-rounded/24/ffffff/alarm.png" />
+            <img id="profile" src="https://yt3.ggpht.com/yti/APfAmoFTTcFKqIsT0hC0kjToI4f9Cg4eDQ9a5MZCoO53fP4=s88-c-k-c0x00ffffff-no-rj-mo" alt="">
+        </div>
+    </div>
+
+    <div class="body">
+        <div class="menu">
+            <div class="homediv">
+                    <img src="https://img.icons8.com/fluent-systems-filled/24/ffffff/home.png" />                <div class="txt">
+                    <h3>Home</h3>
+                </div>
+            </div>
+            <div class="homediv">
+                <img src="https://img.icons8.com/small/24/ffffff/compass.png" />
+                
+                <div class="txt">
+                    <h3>Explore</h3>
+                </div>
+            </div>
+            <div class="homediv">
+                <img src="https://img.icons8.com/ios/24/ffffff/video-playlist.png" />
+                <div class="txt">
+                    <h3>Subscription</h3>
+                </div>
+            </div>
+           
+            <div class="line"></div>
+            
+            <div class="homediv">
+            <img src="https://img.icons8.com/windows/24/ffffff/video-gallery.png" />
+                <div class="txt">
+                    <h3>Library</h3>
+                </div>
+            </div>
+            <div class="homediv">
+                <img
+                    src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/24/ffffff/external-history-instagram-flatart-icons-outline-flatarticons.png" />
+                <div class="txt">
+                    <h3>History</h3>
+                </div>
+            </div>
+            <div class="homediv">
+                <img src="https://img.icons8.com/material-outlined/24/ffffff/video.png" />
+                <div class="txt">
+                    <h3>Your videos</h3>
+                </div>
+            </div>
+            <div class="homediv">
+                <img src="https://img.icons8.com/material-outlined/24/ffffff/clock--v1.png" />
+                <div class="txt">
+                    <h3>Watch later</h3>
+                </div>
+            </div>
+            <div class="homediv">
+            <img src="https://img.icons8.com/ios/24/ffffff/facebook-like.png" />
+                <div class="txt">
+                    <h3>Liked videos</h3>
+                </div>
+            </div>
+            <div class="homediv">
+                <img src="https://img.icons8.com/ios-glyphs/24/ffffff/expand-arrow--v1.png" />
+                <div class="txt">
+                    <h3>Show more</h3>
+                </div>
+            </div>
+            
+            
+            <div class="line"></div>
+            
+                
+        </div>
+        <div id="result">
+            
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    let popular = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=20&key=AIzaSyA5WWRodrTI04OnMd5VsmpJL8MbnazQGzI`
+
+    async function pop(){
+        let res =await fetch (`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=20&key=AIzaSyA5WWRodrTI04OnMd5VsmpJL8MbnazQGzI`)
+        
+        let data = await res.json()
+        console.log('data', data);
+        
+        pops(data.items)
+
+    }
+    pop()
+
+    const  pops = (data) => {
+
+        data.map((ele)=>{
+
+
+            let { snippet, id: { videoId } } = ele;
+            console.log(ele.id)
+
+            let id = ele.id;
+
+            let div = document.createElement("div");
+
+
+
+
+            let title = document.createElement("p");
+            title.textContent = snippet.title;
+
+
+            let thumb = document.createElement("img");
+            thumb.src = snippet.thumbnails.high.url;
+            div.append(thumb, title);
+            value.append(div)
+
+            let showdata = {
+
+                snippet,
+                id
+
+            }
+            div.onclick = () => {
+
+                let ids = localStorage.setItem("id", JSON.stringify(showdata));
+                window.location.href = "vid.html"
+
+            }
+        })
+    }
+
+
+    let value = document.querySelector("#result");
+
+    async function search() {
+        document.querySelector("#result").innerHTML = ""
+
+        let val = document.querySelector("#value").value;
+
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${val}&type=video&key=AIzaSyA5WWRodrTI04OnMd5VsmpJL8MbnazQGzI&maxResults=20`)
+
+        let data = await res.json()
+
+        display(data.items);
+    }
+
+    const display = (data) => {
+
+        data.map((ele) => {
+
+            let { snippet, id: { videoId } } = ele;
+            
+            let div = document.createElement("div");
+
+            
+
+
+            let title = document.createElement("p");
+            title.textContent = snippet.title;
+           
+
+            let thumb = document.createElement("img");
+            thumb.src = snippet.thumbnails.high.url;
+            div.append(thumb, title);
+            value.append(div)
+
+            let showdata = {
+
+                snippet,
+                videoId
+
+            }
+            div.onclick = () => {
+
+                let ids = localStorage.setItem("ids", JSON.stringify(showdata));
+                window.location.href = "video.html"
+
+            }
+        })
+    }
+
+
+
+
+
+
+</script>
